@@ -1,9 +1,9 @@
 <template>
     <aside class="container-left">
-      <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+     <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
         <el-radio-button :label="false">展开</el-radio-button>
         <el-radio-button :label="true">收起</el-radio-button>
-      </el-radio-group>
+      </el-radio-group>-->
       <el-menu default-active="1-4-1"
                class="el-menu-vertical-demo"
                background-color="#545c64"
@@ -12,6 +12,10 @@
                @open="handleOpen"
                @close="handleClose"
                :collapse="isCollapse">
+        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+          <el-radio-button :label="false">展开</el-radio-button>
+          <el-radio-button :label="true">收起</el-radio-button>
+        </el-radio-group>
         <el-submenu index="1">
           <template slot="title">
             <i class="el-icon-location"></i>
@@ -65,14 +69,18 @@
   }
 </script>
 
-<style scoped>
+<style scoped type="text/scss" lang="scss" rel="stylesheet/scss">
+  .container-left{
+     background-color: #0ABF74;
+  }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
+    height: calc(100%);
     width: 200px;
-    height: 400px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
   .el-menu-vertical-demo.el-menu--collapse{
-   height: 400px;
-    overflow: scroll;
+    width: 64px;
+    height: 100%;
+    overflow-y: scroll;
   }
 </style>

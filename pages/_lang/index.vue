@@ -1,8 +1,8 @@
 
 <template>
-  <div>
+  <div class="container">
     <nuxt-header></nuxt-header>
-    <div class="container">
+    <div class="content">
       <nuxt-left></nuxt-left>
       <main class="nuxt-right">
         <nuxt-child/>
@@ -19,10 +19,6 @@
 
   export default {
     beforeCreate(){
-      /*if(this.$route.fullPath=='/') {
-           this.$router.replace({path:'/cn'})
-      }
-       console.log(123,this.$route.fullPath)*/
     },
     methods:{
 
@@ -37,17 +33,21 @@
   }
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped type="text/scss">
-  @import "~assets/style/public.scss";
   .container{
+    flex: 1;
     display: flex;
-    .nuxt-right{
+    flex-direction: column;
+    .content{
       flex: 1;
+      display: flex;
+      height: calc(100vh - 111px);
+      overflow: hidden;
+      .nuxt-right{
+        height: 100%;
+        overflow-y:scroll ;
+        flex: 1;
+      }
     }
   }
 
-  /*p{
-    width: 100px;
-    color: red;
-    @include no-wrap()
-  }*/
 </style>
