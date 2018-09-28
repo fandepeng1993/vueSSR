@@ -1,17 +1,17 @@
 <template>
   <div id="echarts">
-    <p>{{'fandepeng'|fdpupcase}}</p>
-    {{$t('el.select.noMatch')}}
-    {{$t('exHeader.language')}}
-    <div v-test-directive1:foo.a.b="expression">dddd</div>
-    <div id="myChart"></div>
-    <div id="myChart2"></div>
-    <el-button type="primary" @click="changelang">主要按钮</el-button>
+    <div ref="myChart" class="myChart" :id="nuxtId"></div>
   </div>
 </template>
 <script type="text/javascript">
   import api from '~/plugins/libs/api'
   export default {
+    props:{
+     nuxtId:{
+       type: String,
+       default:'chart'
+     }
+    },
     data () {
       return {
         expression: 'expresson String',
@@ -19,16 +19,14 @@
       }
     },
     created(){
-
+       console.log(this.nuxtId)
     },
     methods: {
-      changelang(){
-
-      },
       echartsInit () {
         // 找到容器
-
-        let myChart = this.$echarts.init(document.getElementById('myChart'),'macarons')
+        let chartDom =document.getElementById(`${this.nuxtId}`);
+        console.log(chartDom)
+        let myChart = this.$echarts.init(chartDom,'macarons')
         // 开始渲染
         myChart.setOption({
           title: {text: '在Vue中使用echarts'},
@@ -67,7 +65,7 @@
     },
     mounted () {
       this.echartsInit()
-      this.echartsInit2()
+      // this.echartsInit2()
       api.get('users/').then(res=>{
         // console.log(res,3333)
       })
@@ -75,18 +73,11 @@
   }
 </script>
 <style scoped lang="scss" rel="stylesheet/scss" type="text/scss">
-  #myChart{
+  .myChart{
     width: 600px;
     height: 300px;
     margin-left: auto;
     margin-right: auto;
-    float: left;
-  }
-  #myChart2{
-    width: 600px;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    float: right;
+   // float: left;
   }
 </style>

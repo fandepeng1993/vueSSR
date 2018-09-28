@@ -1,22 +1,32 @@
 
 <template>
-  <div>
-    <h1>默认index主页</h1>
-    <my-charts></my-charts>
-    <nuxt-link :to="{path:`${$i18n.path('/about')}`}">about</nuxt-link>
+  <div class="fullscreen">
+    <nuxt-content-list></nuxt-content-list>
+    <nuxt-content-chart></nuxt-content-chart>
+    <nuxt-content-map></nuxt-content-map>
+    <!--<my-charts :nuxt-id="'lineChart'"></my-charts>-->
   </div>
 </template>
 
 <script>
-  import MyCharts from'~/components/mycharts.vue'
+  import MyCharts from'~/components/chart/mycharts.vue'
+  import NuxtContentChart from'~/components/nuxt-content-chart/nuxt-content-chart.vue'
+  import NuxtContentList from'~/components/nuxt-content-list/nuxt-content-list.vue'
+  import NuxtContentMap from'~/components/nuxt-content-map/nuxt-content-map.vue'
   export default {
     name: "index",
     components:{
-      MyCharts
+      MyCharts,
+      NuxtContentChart,
+      NuxtContentList,
+      NuxtContentMap
     }
   }
 </script>
 
-<style scoped>
-
+<style scoped type="text/scss" lang="scss" rel="stylesheet/scss">
+.fullscreen{
+  display: flex;
+  height: 100%;
+}
 </style>

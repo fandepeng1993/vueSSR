@@ -6,7 +6,22 @@
 li {
   list-style-type: none;
 }
+html,body {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  color:$font-color7;
+}
 
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+}
 body {
   font-family: 'PingFang SC', 'Hiragino Sans GB', 'Helvetica';
   -webkit-overflow-scrolling: touch;
@@ -29,15 +44,6 @@ button,a,input[type=button]{
   font-variant: normal;
   text-transform: none;
 }
-/*
-.Din-Medium {
-  font-family: 'Din-Medium';
-  //font-weight: 800;
-}
-
-.MFShangYa {
-  font-family: 'MFShangYa';
-}*/
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -68,7 +74,15 @@ input{
   color: #B5B5B5;
   font-size: 14px;
 }
-
+.clearfix{
+  zoom: 1;
+  &::after{
+    content:'';
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
 input {
   border: 0;
   font-size: 14px;

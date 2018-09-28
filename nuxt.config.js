@@ -1,6 +1,31 @@
+const webpack = require('webpack');
+
+
 module.exports = {
   build: {
-    vendor: ['~/assets/style/public.scss','axios','~/plugins/libs/api.js']
+    vendor: ['axios','~/plugins/libs/api.js'],
+    extend(config,ctx){
+      const sassResourcesLoader = {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            'assets/style/theme/variables.scss',
+            'assets/style/public.scss'
+          ]
+        }
+      }
+      // 遍历nuxt定义的loader配置，向里面添加新的配置。
+      config.module.rules.forEach((rule) => {
+        if (rule.test.toString() === '/\\.vue$/') {
+          rule.options.loaders.sass.push(sassResourcesLoader)
+          rule.options.loaders.scss.push(sassResourcesLoader)
+        }
+        if (['/\\.sass$/', '/\\.scss$/'].indexOf(rule.test.toString()) !== -1) {
+          rule.use.push(sassResourcesLoader)
+        }
+      })
+
+    },
   },
   loading: {
     color: 'pink'
@@ -33,11 +58,7 @@ module.exports = {
     {
       src: '~assets/style/public.scss',
       lang: 'scss'
-    },
-   /* {
-      src: '~assets/style/theme/element-variables.scss',
-      lang: 'scss'
-    }*/
+    }
   ]
 }
 
