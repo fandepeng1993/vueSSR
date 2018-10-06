@@ -12,7 +12,7 @@
   </div>
 </template>
 <script>
-
+  /*测试提交*/
   import NuxtFooter from'~/components/nuxt-footer/index.vue'
   import NuxtHeader from'~/components/nuxt-header/index.vue'
   import NuxtLeft from'~/components/nuxt-left/index.vue'
