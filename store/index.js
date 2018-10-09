@@ -12,3 +12,7 @@ export const mutations = {
     }
   }
 }
+export const getters = {
+  locales: state => state.locales,
+  locale: state => state.locale,
+}

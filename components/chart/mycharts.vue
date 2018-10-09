@@ -1,5 +1,6 @@
 <template>
   <div id="echarts">
+    {{list}}
     <div ref="myChart" class="myChart" :id="nuxtId"></div>
   </div>
 </template>
@@ -15,18 +16,25 @@
     data () {
       return {
         expression: 'expresson String',
-        foo: 'foo'
+        foo: 'foo',
+        myChart:''
       }
     },
     created(){
-       console.log(this.nuxtId)
+       //console.log(this.nuxtId)
+    },
+    computed:{
+      list(){
+        return '8888'
+      }
     },
     methods: {
       echartsInit () {
         // 找到容器
         let chartDom =document.getElementById(`${this.nuxtId}`);
         console.log(chartDom)
-        let myChart = this.$echarts.init(chartDom,'macarons')
+        let myChart = this.$echarts.init(chartDom,'vintage')
+        this.myChart=myChart;
         // 开始渲染
         myChart.setOption({
           title: {text: '在Vue中使用echarts'},
@@ -67,8 +75,15 @@
       this.echartsInit()
       // this.echartsInit2()
       api.get('users/').then(res=>{
-        // console.log(res,3333)
+         console.log(res,3333)
       })
+      setTimeout(()=>{
+        this.myChart.setOption({
+          series: [{
+            data: [15, 10, 16, 20, 20, 10]
+          }]
+        })
+      },5000)
     }
   }
 </script>
